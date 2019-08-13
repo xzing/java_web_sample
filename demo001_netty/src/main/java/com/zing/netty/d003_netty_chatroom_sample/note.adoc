@@ -1,0 +1,6 @@
+= 测试方法
+
+1. 启动Server
+2. 启动Client
+3. 启动另一个Client
+4. Client命令行端口输入文字，回车发送，观察Server 和两个Client
