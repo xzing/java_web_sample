@@ -1,0 +1,6 @@
+= 测试方法
+
+1. 启动Server
+2. 启动Client
+3. 关闭Server，观察Client
+4. 重启Server 观察Client
