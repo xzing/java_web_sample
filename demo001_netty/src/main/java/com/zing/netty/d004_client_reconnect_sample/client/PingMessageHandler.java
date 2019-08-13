@@ -3,8 +3,9 @@ package com.zing.netty.d004_client_reconnect_sample.client;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import static com.zing.netty.d006.reconnect.server.PongMessageHandler.PING;
-import static com.zing.netty.d006.reconnect.server.PongMessageHandler.PONG;
+import static com.zing.netty.d004_client_reconnect_sample.server.PongMessageHandler.PING;
+import static com.zing.netty.d004_client_reconnect_sample.server.PongMessageHandler.PONG;
+
 
 /**
  * create at     2019-08-12 11:30

@@ -1,0 +1,7 @@
+syntax = "proto3";
+package com.zing.netty.dto;
+
+
+message ZingMessage {
+    map<string, string> heartBeat = 1;
+}

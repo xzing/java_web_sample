@@ -4,7 +4,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
 
-import static com.zing.netty.d006.reconnect.server.PongMessageHandler.PING;
+import static com.zing.netty.d004_client_reconnect_sample.server.PongMessageHandler.PING;
+
 
 /**
  * create at     2019-08-12 10:53
