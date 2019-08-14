@@ -3,10 +3,15 @@ package com.zing.netty.d005_scheduled_heart_beat_sample.client;
 import com.zing.netty.dto.Dto;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.handler.timeout.IdleState;
+import io.netty.handler.timeout.IdleStateEvent;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static io.netty.handler.timeout.IdleState.ALL_IDLE;
 
 /**
  * create at     2019-08-13 14:53
@@ -16,6 +21,33 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class ScheduledHeartBeatHandler extends SimpleChannelInboundHandler<Dto.ZingMessage> {
+    AtomicInteger time = new AtomicInteger(5);
+
+    AtomicBoolean running = new AtomicBoolean(false);
+
+    private String name;
+
+    public ScheduledHeartBeatHandler(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
+        if (evt instanceof IdleStateEvent) {
+            IdleState state = ((IdleStateEvent) evt).state();
+            if (ALL_IDLE.equals(state)) {
+                int t = time.decrementAndGet();
+                if (t < 0) {
+                    // 停止心跳
+                    running.compareAndSet(true, false);
+                    // 移除定时任务
+                    SchedulerCanBeStop.cancelHeartbeat(name);
+                    // 关闭连接
+                    ctx.channel().close();
+                }
+            }
+        }
+    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Dto.ZingMessage zingMessage) throws Exception {
@@ -25,11 +57,19 @@ public class ScheduledHeartBeatHandler extends SimpleChannelInboundHandler<Dto.Z
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         log.info("link active,start heart beat");
-        HeartBeatScheduler.repeat(() -> {
+        running.compareAndSet(false, true);
+        Runnable r = () -> {
             UUID uuid = UUID.randomUUID();
             Dto.ZingMessage msg = Dto.ZingMessage.newBuilder().putHeartBeat("Ping>>>", uuid.toString()).build();
             ctx.writeAndFlush(msg);
-        }, 10, TimeUnit.SECONDS);
+        };
+        SchedulerCanBeStop.addClientHeartTask(name, r);
+
+        // HeartBeatScheduler.repeat(() -> {
+        //     UUID uuid = UUID.randomUUID();
+        //     Dto.ZingMessage msg = Dto.ZingMessage.newBuilder().putHeartBeat("Ping>>>", uuid.toString()).build();
+        //     ctx.writeAndFlush(msg);
+        // }, 10, TimeUnit.SECONDS);
 
     }
 }

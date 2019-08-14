@@ -20,11 +20,11 @@ public class HeartBeatClient {
     Bootstrap client = new Bootstrap();
     private volatile boolean notStop = true;
 
-    public void linkStart(int port) {
+    public void linkStart(int port, String name) {
         client.group(clientGroup)
                 .channel(NioSocketChannel.class)
                 .option(ChannelOption.SO_KEEPALIVE, true)
-                .handler(new HeartBeatClientInitializer());
+                .handler(new HeartBeatClientInitializer(name));
         if (port < 1000 || port > 65535) {
             port = 8800;
         }

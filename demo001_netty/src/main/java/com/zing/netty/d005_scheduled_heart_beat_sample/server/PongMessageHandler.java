@@ -24,6 +24,7 @@ public class PongMessageHandler extends SimpleChannelInboundHandler<Dto.ZingMess
         Dto.ZingMessage msg = Dto.ZingMessage.newBuilder()
                 .putHeartBeat("ZingPong>>>", uuid.toString())
                 .build();
+        Thread.sleep(7000);
         channelHandlerContext.writeAndFlush(msg);
     }
 

@@ -16,16 +16,35 @@ public class Starter {
             server.start(8800);
         });
 
-
-        Runnable r = () -> {
-            HeartBeatClient client = new HeartBeatClient();
-            client.linkStart(8800);
-        };
-        Thread t1 = new Thread(r);
-        Thread t2 = new Thread(r);
         ts.start();
+
+
+        Thread t1 = new Thread(() -> {
+            HeartBeatClient client = new HeartBeatClient();
+            client.linkStart(8800,"0001");
+        });
+        Thread t2 = new Thread(() -> {
+            HeartBeatClient client = new HeartBeatClient();
+            client.linkStart(8800,"0002");
+        });
+        Thread t3 = new Thread(() -> {
+            HeartBeatClient client = new HeartBeatClient();
+            client.linkStart(8800,"0003");
+        });
+        Thread t4 = new Thread(() -> {
+            HeartBeatClient client = new HeartBeatClient();
+            client.linkStart(8800,"0004");
+        });
+        Thread t5 = new Thread(() -> {
+            HeartBeatClient client = new HeartBeatClient();
+            client.linkStart(8800,"0005");
+        });
+
         t1.start();
         t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
 
 
     }
