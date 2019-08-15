@@ -39,7 +39,7 @@ public class SchedulerCanBeStop {
     public static void cancelHeartbeat(String name) {
         if (isRunning.get()) {
             tasks.remove(name);
-            log.info("stop task:{}", name);
+            log.info("stop task:{} ", name);
             if (tasks.isEmpty()) {
                 scheduler.shutdown();
                 isRunning.set(false);
@@ -53,9 +53,11 @@ public class SchedulerCanBeStop {
                 scheduler = Executors.newScheduledThreadPool(4);
             }
 
-            Runnable r = () -> tasks.values().forEach(Runnable::run);
+            Runnable r = () -> tasks.forEach((n, t) -> {
+                t.run();
+            });
             // FIXME 改为可配置心跳时间
-            repeat(r, 10, TimeUnit.SECONDS);
+            repeat(r, 1, TimeUnit.SECONDS);
         }
     }
 

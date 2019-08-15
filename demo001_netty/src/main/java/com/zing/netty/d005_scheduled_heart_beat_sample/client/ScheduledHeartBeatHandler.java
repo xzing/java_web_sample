@@ -11,7 +11,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static io.netty.handler.timeout.IdleState.ALL_IDLE;
+import static io.netty.handler.timeout.IdleState.READER_IDLE;
 
 /**
  * create at     2019-08-13 14:53
@@ -21,7 +21,7 @@ import static io.netty.handler.timeout.IdleState.ALL_IDLE;
  */
 @Slf4j
 public class ScheduledHeartBeatHandler extends SimpleChannelInboundHandler<Dto.ZingMessage> {
-    AtomicInteger time = new AtomicInteger(5);
+    AtomicInteger time = new AtomicInteger(3);
 
     AtomicBoolean running = new AtomicBoolean(false);
 
@@ -35,7 +35,8 @@ public class ScheduledHeartBeatHandler extends SimpleChannelInboundHandler<Dto.Z
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
         if (evt instanceof IdleStateEvent) {
             IdleState state = ((IdleStateEvent) evt).state();
-            if (ALL_IDLE.equals(state)) {
+            if (READER_IDLE.equals(state)) {
+                log.info("{} read idle! count:{}", name, 3 - time.get());
                 int t = time.decrementAndGet();
                 if (t < 0) {
                     // 停止心跳
@@ -43,7 +44,7 @@ public class ScheduledHeartBeatHandler extends SimpleChannelInboundHandler<Dto.Z
                     // 移除定时任务
                     SchedulerCanBeStop.cancelHeartbeat(name);
                     // 关闭连接
-                    ctx.channel().close();
+                    ctx.close();
                 }
             }
         }
@@ -51,7 +52,8 @@ public class ScheduledHeartBeatHandler extends SimpleChannelInboundHandler<Dto.Z
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Dto.ZingMessage zingMessage) throws Exception {
-        log.info("zing:{}", zingMessage.getHeartBeatMap());
+        time.set(3);
+        log.info("response:{}", zingMessage.getHeartBeatMap());
     }
 
     @Override
@@ -59,8 +61,12 @@ public class ScheduledHeartBeatHandler extends SimpleChannelInboundHandler<Dto.Z
         log.info("link active,start heart beat");
         running.compareAndSet(false, true);
         Runnable r = () -> {
+            log.info("{} send ping", name);
             UUID uuid = UUID.randomUUID();
-            Dto.ZingMessage msg = Dto.ZingMessage.newBuilder().putHeartBeat("Ping>>>", uuid.toString()).build();
+            Dto.ZingMessage msg = Dto.ZingMessage.newBuilder()
+                    .putHeartBeat("name", name)
+                    .putHeartBeat("ping", uuid.toString())
+                    .build();
             ctx.writeAndFlush(msg);
         };
         SchedulerCanBeStop.addClientHeartTask(name, r);
