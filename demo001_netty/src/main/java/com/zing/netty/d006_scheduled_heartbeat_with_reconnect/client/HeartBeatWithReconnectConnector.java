@@ -80,7 +80,7 @@ public class HeartBeatWithReconnectConnector {
         retryLimit.set(4);
     }
 
-    private void stopClient() {
+    public void stopClient() {
         log.info("Client Stop");
         notStop = false;
     }

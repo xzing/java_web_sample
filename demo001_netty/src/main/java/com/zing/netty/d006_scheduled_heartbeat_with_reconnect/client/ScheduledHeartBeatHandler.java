@@ -81,9 +81,10 @@ public class ScheduledHeartBeatHandler extends SimpleChannelInboundHandler<Dto.Z
 
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-        super.handlerRemoved(ctx);
         SchedulerCanBeStop.cancelHeartbeat(name);
         running.compareAndSet(true, false);
+        super.handlerRemoved(ctx);
+        connector.stopClient();
     }
 
     private void resetRetryLimit() {
