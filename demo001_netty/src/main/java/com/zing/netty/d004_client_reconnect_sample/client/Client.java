@@ -8,6 +8,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * create at     2019-08-12 11:07
@@ -16,38 +17,58 @@ import java.util.concurrent.TimeUnit;
  * @version 0.0.1
  */
 public class Client {
-    static EventLoopGroup nioGroup = new NioEventLoopGroup();
-    static Bootstrap bootstrap;
+    private EventLoopGroup nioGroup = new NioEventLoopGroup();
+    private Bootstrap bootstrap;
+    private volatile boolean isNotStop = true;
+    public AtomicInteger reconnectLimit = new AtomicInteger(3);
+
 
     public static void main(String[] args) throws InterruptedException {
+        Client c = new Client();
+        c.start();
+
+
+    }
+
+    public void start() throws InterruptedException {
         bootstrap = new Bootstrap();
         bootstrap.group(nioGroup)
                 .channel(NioSocketChannel.class)
                 .option(ChannelOption.SO_KEEPALIVE, true)
-                .handler(new ChildInitializeHandler());
+                .handler(new ChildInitializeHandler(this));
 
         try {
-            doConnect();
+            ChannelFuture future = doConnect();
 
             while (isNotStop) {
                 Thread.sleep(10000);
             }
+
+            if (future != null) {
+                future.channel().closeFuture().sync();
+            }
+
+
         } finally {
             nioGroup.shutdownGracefully();
         }
-
     }
 
-    public static final boolean isNotStop = true;
 
-    private static void doConnect() {
+    public ChannelFuture doConnect() {
+        ChannelFuture cf;
         try {
-            ChannelFuture cf = bootstrap.connect("localhost", 8080)
+            cf = bootstrap.connect("localhost", 8080)
                     .addListener((ChannelFuture f) -> {
                         if (!f.isSuccess()) {
+                            int times = reconnectLimit.decrementAndGet();
+                            if (times < 0) {
+                                isNotStop = false;
+                            }
                             System.out.println("reconnect");
                             f.channel().eventLoop().schedule(() -> doConnect(), 5, TimeUnit.SECONDS);
                         } else {
+                            reconnectLimit.set(3);
                             System.out.println("stop reconnect");
                         }
                     })
@@ -55,6 +76,8 @@ public class Client {
 
         } catch (Exception e) {
             e.printStackTrace();
+            cf = null;
         }
+        return cf;
     }
 }

@@ -19,6 +19,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class ChildInitializeHandler extends ChannelInitializer<SocketChannel> {
 
+    private Client connector;
+
+    public ChildInitializeHandler(Client connector) {
+        this.connector = connector;
+    }
+
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ch.pipeline()
@@ -27,7 +33,7 @@ public class ChildInitializeHandler extends ChannelInitializer<SocketChannel> {
                 .addLast(new DelimiterBasedFrameDecoder(4096, Delimiters.lineDelimiter()))
                 .addLast(new StringDecoder(CharsetUtil.UTF_8))
                 .addLast(new StringEncoder(CharsetUtil.UTF_8))
-                .addLast(new PingMessageHandler())
+                .addLast(new PingMessageHandler(connector))
         ;
     }
 }
