@@ -15,5 +15,12 @@ public class TestOptional {
         Optional<String> demo = Optional.empty();
         demo.ifPresent(System.out::println);
         System.out.println(demo.orElseGet(() -> "N"));
+
+        demo = Optional.ofNullable(null);
+        System.out.println(demo.orElseGet(() -> "H"));
+        demo = Optional.of("M");
+        System.out.println(demo.orElseGet(() -> "P"));
+
+
     }
 }
