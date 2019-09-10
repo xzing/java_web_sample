@@ -18,6 +18,7 @@ public class TestOptional {
 
         demo = Optional.ofNullable(null);
         System.out.println(demo.orElseGet(() -> "H"));
+
         demo = Optional.of("M");
         System.out.println(demo.orElseGet(() -> "P"));
 
