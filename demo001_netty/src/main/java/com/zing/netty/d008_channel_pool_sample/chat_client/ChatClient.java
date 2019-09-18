@@ -1,4 +1,4 @@
-package com.zing.netty.d0008_channel_pool_sample.chat_client;
+package com.zing.netty.d008_channel_pool_sample.chat_client;
 
 
 import io.netty.bootstrap.Bootstrap;
@@ -58,11 +58,7 @@ public class ChatClient {
                 pool.release(ch);
                 Thread.sleep(200);
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | IOException | ExecutionException e) {
             e.printStackTrace();
         } finally {
             clientGroup.shutdownGracefully();

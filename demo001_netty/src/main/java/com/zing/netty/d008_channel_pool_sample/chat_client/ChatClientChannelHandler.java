@@ -1,4 +1,4 @@
-package com.zing.netty.d0008_channel_pool_sample.chat_client;
+package com.zing.netty.d008_channel_pool_sample.chat_client;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
