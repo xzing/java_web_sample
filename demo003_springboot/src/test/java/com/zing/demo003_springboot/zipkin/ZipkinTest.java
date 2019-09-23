@@ -111,8 +111,6 @@ public class ZipkinTest {
         traceInDifferentProcessStop();
         scopedSpan.finish();
         tracing.close();
-        // spanReporter.close();
-        // sender.close();
     }
 
     // @Test
