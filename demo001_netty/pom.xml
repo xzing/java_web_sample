@@ -8,7 +8,7 @@
     <artifactId>netty</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>zample</name>
+    <name>demo001_netty</name>
     <description>netty sample and demo</description>
 
     <properties>
