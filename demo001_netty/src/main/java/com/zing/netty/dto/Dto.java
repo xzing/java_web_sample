@@ -736,6 +736,732 @@ public final class Dto {
 
   }
 
+  public interface DemoMessage2OrBuilder extends
+          // @@protoc_insertion_point(interface_extends:com.zing.netty.dto.DemoMessage2)
+          com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string f1 = 1;</code>
+     */
+    java.lang.String getF1();
+
+    /**
+     * <code>string f1 = 1;</code>
+     */
+    com.google.protobuf.ByteString
+    getF1Bytes();
+
+    /**
+     * <code>int32 f2 = 2;</code>
+     */
+    int getF2();
+
+    /**
+     * <code>bool f3 = 3;</code>
+     */
+    boolean getF3();
+  }
+
+  /**
+   * Protobuf type {@code com.zing.netty.dto.DemoMessage2}
+   */
+  public static final class DemoMessage2 extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:com.zing.netty.dto.DemoMessage2)
+          DemoMessage2OrBuilder {
+    private static final long serialVersionUID = 0L;
+
+    // Use DemoMessage2.newBuilder() to construct.
+    private DemoMessage2(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+
+    private DemoMessage2() {
+      f1_ = "";
+      f2_ = 0;
+      f3_ = false;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+
+    private DemoMessage2(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              f1_ = s;
+              break;
+            }
+            case 16: {
+
+              f2_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              f3_ = input.readBool();
+              break;
+            }
+            default: {
+              if (!parseUnknownFieldProto3(
+                      input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return com.zing.netty.dto.Dto.internal_static_com_zing_netty_dto_DemoMessage2_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return com.zing.netty.dto.Dto.internal_static_com_zing_netty_dto_DemoMessage2_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      com.zing.netty.dto.Dto.DemoMessage2.class, com.zing.netty.dto.Dto.DemoMessage2.Builder.class);
+    }
+
+    public static final int F1_FIELD_NUMBER = 1;
+    private volatile java.lang.Object f1_;
+
+    /**
+     * <code>string f1 = 1;</code>
+     */
+    public java.lang.String getF1() {
+      java.lang.Object ref = f1_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        f1_ = s;
+        return s;
+      }
+    }
+
+    /**
+     * <code>string f1 = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+    getF1Bytes() {
+      java.lang.Object ref = f1_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b =
+                com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
+        f1_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int F2_FIELD_NUMBER = 2;
+    private int f2_;
+
+    /**
+     * <code>int32 f2 = 2;</code>
+     */
+    public int getF2() {
+      return f2_;
+    }
+
+    public static final int F3_FIELD_NUMBER = 3;
+    private boolean f3_;
+
+    /**
+     * <code>bool f3 = 3;</code>
+     */
+    public boolean getF3() {
+      return f3_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+      if (!getF1Bytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, f1_);
+      }
+      if (f2_ != 0) {
+        output.writeInt32(2, f2_);
+      }
+      if (f3_ != false) {
+        output.writeBool(3, f3_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getF1Bytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, f1_);
+      }
+      if (f2_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeInt32Size(2, f2_);
+      }
+      if (f3_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeBoolSize(3, f3_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+        return true;
+      }
+      if (!(obj instanceof com.zing.netty.dto.Dto.DemoMessage2)) {
+        return super.equals(obj);
+      }
+      com.zing.netty.dto.Dto.DemoMessage2 other = (com.zing.netty.dto.Dto.DemoMessage2) obj;
+
+      boolean result = true;
+      result = result && getF1()
+              .equals(other.getF1());
+      result = result && (getF2()
+              == other.getF2());
+      result = result && (getF3()
+              == other.getF3());
+      result = result && unknownFields.equals(other.unknownFields);
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + F1_FIELD_NUMBER;
+      hash = (53 * hash) + getF1().hashCode();
+      hash = (37 * hash) + F2_FIELD_NUMBER;
+      hash = (53 * hash) + getF2();
+      hash = (37 * hash) + F3_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+              getF3());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() {
+      return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(com.zing.netty.dto.Dto.DemoMessage2 prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+
+    /**
+     * Protobuf type {@code com.zing.netty.dto.DemoMessage2}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:com.zing.netty.dto.DemoMessage2)
+            com.zing.netty.dto.Dto.DemoMessage2OrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+        return com.zing.netty.dto.Dto.internal_static_com_zing_netty_dto_DemoMessage2_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+        return com.zing.netty.dto.Dto.internal_static_com_zing_netty_dto_DemoMessage2_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        com.zing.netty.dto.Dto.DemoMessage2.class, com.zing.netty.dto.Dto.DemoMessage2.Builder.class);
+      }
+
+      // Construct using com.zing.netty.dto.Dto.DemoMessage2.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        f1_ = "";
+
+        f2_ = 0;
+
+        f3_ = false;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+      getDescriptorForType() {
+        return com.zing.netty.dto.Dto.internal_static_com_zing_netty_dto_DemoMessage2_descriptor;
+      }
+
+      @java.lang.Override
+      public com.zing.netty.dto.Dto.DemoMessage2 getDefaultInstanceForType() {
+        return com.zing.netty.dto.Dto.DemoMessage2.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.zing.netty.dto.Dto.DemoMessage2 build() {
+        com.zing.netty.dto.Dto.DemoMessage2 result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.zing.netty.dto.Dto.DemoMessage2 buildPartial() {
+        com.zing.netty.dto.Dto.DemoMessage2 result = new com.zing.netty.dto.Dto.DemoMessage2(this);
+        result.f1_ = f1_;
+        result.f2_ = f2_;
+        result.f3_ = f3_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+
+      @java.lang.Override
+      public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+        return (Builder) super.setField(field, value);
+      }
+
+      @java.lang.Override
+      public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+
+      @java.lang.Override
+      public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+
+      @java.lang.Override
+      public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+
+      @java.lang.Override
+      public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.zing.netty.dto.Dto.DemoMessage2) {
+          return mergeFrom((com.zing.netty.dto.Dto.DemoMessage2) other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.zing.netty.dto.Dto.DemoMessage2 other) {
+        if (other == com.zing.netty.dto.Dto.DemoMessage2.getDefaultInstance()) return this;
+        if (!other.getF1().isEmpty()) {
+          f1_ = other.f1_;
+          onChanged();
+        }
+        if (other.getF2() != 0) {
+          setF2(other.getF2());
+        }
+        if (other.getF3() != false) {
+          setF3(other.getF3());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+        com.zing.netty.dto.Dto.DemoMessage2 parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.zing.netty.dto.Dto.DemoMessage2) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object f1_ = "";
+
+      /**
+       * <code>string f1 = 1;</code>
+       */
+      public java.lang.String getF1() {
+        java.lang.Object ref = f1_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+                  (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          f1_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+
+      /**
+       * <code>string f1 = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+      getF1Bytes() {
+        java.lang.Object ref = f1_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
+          f1_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      /**
+       * <code>string f1 = 1;</code>
+       */
+      public Builder setF1(
+              java.lang.String value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+
+        f1_ = value;
+        onChanged();
+        return this;
+      }
+
+      /**
+       * <code>string f1 = 1;</code>
+       */
+      public Builder clearF1() {
+
+        f1_ = getDefaultInstance().getF1();
+        onChanged();
+        return this;
+      }
+
+      /**
+       * <code>string f1 = 1;</code>
+       */
+      public Builder setF1Bytes(
+              com.google.protobuf.ByteString value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
+        f1_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int f2_;
+
+      /**
+       * <code>int32 f2 = 2;</code>
+       */
+      public int getF2() {
+        return f2_;
+      }
+
+      /**
+       * <code>int32 f2 = 2;</code>
+       */
+      public Builder setF2(int value) {
+
+        f2_ = value;
+        onChanged();
+        return this;
+      }
+
+      /**
+       * <code>int32 f2 = 2;</code>
+       */
+      public Builder clearF2() {
+
+        f2_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean f3_;
+
+      /**
+       * <code>bool f3 = 3;</code>
+       */
+      public boolean getF3() {
+        return f3_;
+      }
+
+      /**
+       * <code>bool f3 = 3;</code>
+       */
+      public Builder setF3(boolean value) {
+
+        f3_ = value;
+        onChanged();
+        return this;
+      }
+
+      /**
+       * <code>bool f3 = 3;</code>
+       */
+      public Builder clearF3() {
+
+        f3_ = false;
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFieldsProto3(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:com.zing.netty.dto.DemoMessage2)
+    }
+
+    // @@protoc_insertion_point(class_scope:com.zing.netty.dto.DemoMessage2)
+    private static final com.zing.netty.dto.Dto.DemoMessage2 DEFAULT_INSTANCE;
+
+    static {
+      DEFAULT_INSTANCE = new com.zing.netty.dto.Dto.DemoMessage2();
+    }
+
+    public static com.zing.netty.dto.Dto.DemoMessage2 getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DemoMessage2>
+            PARSER = new com.google.protobuf.AbstractParser<DemoMessage2>() {
+      @java.lang.Override
+      public DemoMessage2 parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DemoMessage2(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<DemoMessage2> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DemoMessage2> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.zing.netty.dto.Dto.DemoMessage2 getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_zing_netty_dto_ZingMessage_descriptor;
   private static final 
@@ -743,9 +1469,14 @@ public final class Dto {
       internal_static_com_zing_netty_dto_ZingMessage_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_com_zing_netty_dto_ZingMessage_HeartBeatEntry_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_com_zing_netty_dto_ZingMessage_HeartBeatEntry_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+          internal_static_com_zing_netty_dto_DemoMessage2_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_com_zing_netty_dto_ZingMessage_HeartBeatEntry_fieldAccessorTable;
+      internal_static_com_zing_netty_dto_DemoMessage2_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -757,9 +1488,10 @@ public final class Dto {
     java.lang.String[] descriptorData = {
       "\n\tdto.proto\022\022com.zing.netty.dto\"\202\001\n\013Zing" +
       "Message\022A\n\theartBeat\030\001 \003(\0132..com.zing.ne" +
-      "tty.dto.ZingMessage.HeartBeatEntry\0320\n\016He" +
-      "artBeatEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t" +
-      ":\0028\001b\006proto3"
+              "tty.dto.ZingMessage.HeartBeatEntry\0320\n\016He" +
+              "artBeatEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t" +
+      ":\0028\001\"2\n\014DemoMessage2\022\n\n\002f1\030\001 \001(\t\022\n\n\002f2\030\002" +
+      " \001(\005\022\n\n\002f3\030\003 \001(\010b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -782,9 +1514,15 @@ public final class Dto {
     internal_static_com_zing_netty_dto_ZingMessage_HeartBeatEntry_descriptor =
       internal_static_com_zing_netty_dto_ZingMessage_descriptor.getNestedTypes().get(0);
     internal_static_com_zing_netty_dto_ZingMessage_HeartBeatEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_com_zing_netty_dto_ZingMessage_HeartBeatEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_com_zing_netty_dto_ZingMessage_HeartBeatEntry_descriptor,
+            new java.lang.String[]{"Key", "Value",});
+    internal_static_com_zing_netty_dto_DemoMessage2_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+    internal_static_com_zing_netty_dto_DemoMessage2_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_com_zing_netty_dto_DemoMessage2_descriptor,
+            new java.lang.String[] { "F1", "F2", "F3", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

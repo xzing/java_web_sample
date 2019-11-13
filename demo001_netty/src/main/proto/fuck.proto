@@ -2,13 +2,12 @@ syntax = "proto3";
 package com.zing.netty.dto;
 
 
-message ZingMessage {
-    map<string, string> heartBeat = 1;
-}
-
-
-message DemoMessage2 {
+message DemoMessage1 {
     string f1 = 1;
     int32 f2 = 2;
     bool f3 = 3;
+}
+
+message FuckMessage {
+    map<string, string> message = 1;
 }
