@@ -47,7 +47,7 @@ public class D01NioBuffer {
         while (true) {
             int connect = selector.select();
             System.out.println("connected num:" + connect);
-            Set<SelectionKey> selectionKeys = selector.keys();
+            Set<SelectionKey> selectionKeys = selector.selectedKeys();
             System.out.println("selectionKeys:" + selectionKeys);
             Iterator<SelectionKey> keys = selectionKeys.iterator();
             while (keys.hasNext()) {
