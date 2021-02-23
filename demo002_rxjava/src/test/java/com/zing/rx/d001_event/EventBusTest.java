@@ -1,7 +1,7 @@
 package com.zing.rx.d001_event;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * create at     2019-08-20 15:43
