@@ -7,6 +7,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.UUID;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -26,19 +30,21 @@ public class D01FileNio {
             log.info("mkFile:{}", file.createNewFile());
         }
 
-        // try (FileOutputStream outputStream = new FileOutputStream(file, true)) {
-        //     FileChannelImpl channel = (FileChannelImpl) outputStream.getChannel();
-        //     ByteBuffer b ;
-        //     for (int i = 0; i < 5000; i++) {
-        //         String data = UUID.randomUUID().toString() + "\n";
-        //         b = UTF_8.encode(data);
-        //         while (channel.write(b) == 0) {
-        //             b.flip();
-        //         }
-        //     }
-        // }
+        // 限制时间
+        try (FileOutputStream outputStream = new FileOutputStream(file, true)) {
+            FileChannelImpl channel = (FileChannelImpl) outputStream.getChannel();
+            ByteBuffer b;
+            for (int i = 0; i < 5000; i++) {
+                String data = UUID.randomUUID().toString() + "\n";
+                b = UTF_8.encode(data);
+                while (channel.write(b) == 0) {
+                    b.flip();
+                }
+            }
+        }
 
 
+        // 限制空间(非NIO方式)
         ByteBuffer b = ByteBuffer.allocate(4096);
         try (FileOutputStream outputStream = new FileOutputStream(file, true)) {
             FileChannelImpl channel = (FileChannelImpl) outputStream.getChannel();
@@ -55,6 +61,15 @@ public class D01FileNio {
             }
         }
 
+        // 啥都不限制
+        Path path = FileSystems.getDefault().getPath("./", "demo.log");
+        for (int i = 0; i < 5000; i++) {
+            String data = UUID.randomUUID().toString() + "\n";
+            Files.write(path, data.getBytes(UTF_8), StandardOpenOption.APPEND,
+                    StandardOpenOption.CREATE, StandardOpenOption.SYNC, StandardOpenOption.WRITE);
+        }
 
+        // 大文件使用Map
+        // MappedByteBuffer
     }
 }
