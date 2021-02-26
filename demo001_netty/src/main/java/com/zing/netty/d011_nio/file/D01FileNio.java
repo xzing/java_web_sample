@@ -1,12 +1,12 @@
 package com.zing.netty.d011_nio.file;
 
 import lombok.extern.slf4j.Slf4j;
-import sun.nio.ch.FileChannelImpl;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,7 +32,7 @@ public class D01FileNio {
 
         // 限制时间
         try (FileOutputStream outputStream = new FileOutputStream(file, true)) {
-            FileChannelImpl channel = (FileChannelImpl) outputStream.getChannel();
+            FileChannel channel =  outputStream.getChannel();
             ByteBuffer b;
             for (int i = 0; i < 5000; i++) {
                 String data = UUID.randomUUID().toString() + "\n";
@@ -62,7 +62,7 @@ public class D01FileNio {
         // }
         //
         // // 啥都不限制
-        // Path path = FileSystems.getDefault().getPath("./", "demo.log");
+        // Path path = FileSystems.getDefault().getPath("./demo.log");
         // for (int i = 0; i < 5000; i++) {
         //     String data = UUID.randomUUID().toString() + "\n";
         //     Files.write(path, data.getBytes(UTF_8), StandardOpenOption.APPEND,
