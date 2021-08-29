@@ -23,7 +23,7 @@ public class ZipkinTest {
     @Test
     public void zipkinTest() throws InterruptedException {
         // Configure a reporter, which controls how often spans are sent
-        //   (the dependency is io.zipkin.reporter2:zipkin-sender-okhttp3)
+        //   (the dependency is io.demo001_zipkin_kafka.reporter2:demo001_zipkin_kafka-sender-okhttp3)
         OkHttpSender sender = OkHttpSender.create("http://127.0.0.1:9411/api/v2/spans");
         AsyncReporter spanReporter = AsyncReporter.create(sender);
         // Create a tracing component with the service name you want to see in Zipkin.
@@ -49,7 +49,7 @@ public class ZipkinTest {
                 .name("span2")
                 .annotate("step2");
         span2.tag("key2", "value2");
-        System.out.println(span2.context().spanId());
+        // System.out.println(span2.context().spanId());
         Thread.sleep(100);
         span2.finish();
 
@@ -57,24 +57,28 @@ public class ZipkinTest {
         Span span3 = tracer.joinSpan(context)
                 .name("span3")
                 .annotate("step2");
-        System.out.println(span3.context().spanId());
+        // System.out.println(span3.context().spanId());
         Thread.sleep(100);
         span3.tag("key3", "value3");
         span3.finish();
 
         Span span4 = tracer.nextSpan();
         span4.name("span4").annotate("step4");
-        System.out.println(span4.context().spanId());
+        // System.out.println(span4.context().spanId());
         Thread.sleep(100);
         span4.finish();
 
         Span span5 = tracer.newChild(span4.context());
         span5.name("span5").annotate("step5");
-        System.out.println(span5.context().spanId());
+        // System.out.println(span5.context().spanId());
         Thread.sleep(100);
         span5.finish();
+        span1.context();
 
         span1.finish();
+
+        System.out.println(span1.context().spanId());
+
 
         // Failing to close resources can result in dropped spans! When tracing is no
         // longer needed, close the components you made in reverse order. This might be
@@ -85,9 +89,11 @@ public class ZipkinTest {
 
     }
 
+
     OkHttpSender sender = OkHttpSender.create("http://127.0.0.1:9411/api/v2/spans");
     AsyncReporter spanReporter = AsyncReporter.create(sender);
     long traceId = 0x03db1d960ea13d41l;
+
 
     @Test
     public void traceInDifferentProcessStart() throws InterruptedException {

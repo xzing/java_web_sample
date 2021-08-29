@@ -1,4 +1,4 @@
-package com.zing.demo003_springboot;
+package com.zing.springboot;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
