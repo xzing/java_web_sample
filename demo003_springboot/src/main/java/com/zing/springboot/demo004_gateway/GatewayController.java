@@ -34,7 +34,7 @@ public class GatewayController {
             while (headerNames.hasMoreElements()) {
                 String name = headerNames.nextElement();
                 String value = request.getHeader(name);
-                headers.add("Authorization", value);
+                headers.add(name, value);
             }
 
             // 复制 request 的参数
